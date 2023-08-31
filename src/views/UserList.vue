@@ -28,7 +28,6 @@
       <td id="age">{{ user.age }}</td>
       <td><button :id="user._id" @click="editBtn(user)">update</button></td>
       <td><button :id="user._id" @click="submitDelete">delete</button></td>
-      <td><button :id="user._id" @click="submitDetail">details</button></td>
       <td>
         <button :id="user._id" @click="submitDetailLink">details-links</button>
       </td>
@@ -116,14 +115,11 @@ export default {
       console.log(e.target.id);
       const codespaces = useCodeSpacesStore();
       await fetch(`${codespaces.csURL}api/account/${e.target.id}`)
-        .then((res) => {
-          console.log(res);
-          return res.text();
-        })
+        .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          this.detailResults = JSON.parse(data);
-          console.log("detailResults", this.detailResults);
+          console.log("detail() data:", data);
+          // console.log("created() data:", data);
+          this.online.detailObject(data);
         });
 
       this.$router.push({ name: "ItemDetails", params: { id: e.target.id } });
