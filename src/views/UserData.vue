@@ -26,6 +26,7 @@
     <tr v-for="user in online.users" :key="user.id">
       <td>{{ user.date }}</td>
       <td>{{ user.amount }}</td>
+      <td>{{ user.type }}</td>
       <td>{{ user.tag }}</td>
       <td>{{ user.remark }}</td>
       <td><button :id="user._id" @click="editBtn(user)">update</button></td>

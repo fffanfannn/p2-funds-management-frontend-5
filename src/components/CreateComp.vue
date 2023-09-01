@@ -4,6 +4,13 @@
     <form action="">
       <input type="date" v-model="date" name="date" placeholder="Date" />
       <input type="text" v-model="amount" name="amount" placeholder="Amount" />
+      <select id="transactionType" name="type">
+        <option value="Income">Income</option>
+        <option value="Expense">Expense</option>
+      </select>
+      <select id="transactionTag" name="tag">
+        <option value="Default">Default</option>
+      </select>
       <input type="text" v-model="remark" name="remark" placeholder="Remark" />
       <button type="submit" @click="submitCreate">Create</button>
     </form>
@@ -39,16 +46,17 @@ export default {
       const form = document.querySelector("form");
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        // let name = document.querySelector("#name1").value;
-        // let age = document.querySelector("#age1").value;
         if (!Number(this.amount)) {
           this.createMsg = "Amount must be a number";
           return;
         }
+        const selectedType = document.querySelector("#transactionType").value;
+        const selectedTag = document.querySelector("#transactionTag").value;
         const formData = {
           date: this.date,
           amount: Number(this.amount),
-          tag: "default",
+          type: selectedType,
+          tag: selectedTag,
           remark: this.remark,
           userid: this.online.loginUserEach[0]._id,
         };
