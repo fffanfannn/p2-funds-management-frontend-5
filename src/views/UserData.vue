@@ -147,6 +147,19 @@ export default {
         });
       }
     },
+
+    sortByAmount() {
+      this.sortAmountSwitch = !this.sortAmountSwitch;
+      if (this.sortAmountSwitch) {
+        this.online.users.sort((a, b) => {
+          return a.amount - b.amount;
+        });
+      } else {
+        this.online.users.sort((a, b) => {
+          return b.amount - a.amount;
+        });
+      }
+    },
   },
 
   computed: {
