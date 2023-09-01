@@ -6,8 +6,14 @@
   <button @click="searchBtn">search</button>
   <table>
     <tr>
-      <th>Date</th>
-      <th>Amount</th>
+      <th>
+        Date
+        <span @click="sortByDate">↕</span>
+      </th>
+      <th>
+        Amount
+        <span @click="sortByAmount">↕</span>
+      </th>
       <th>Type</th>
       <th>Tag</th>
       <th>Remark</th>
@@ -31,7 +37,7 @@
 
   <p>Income Total: {{ incomeTotalAmount }}</p>
   <p>Expense Total: {{ expenseTotalAmount }}</p>
-  <p>Total Amount: {{ totalAmount }}</p>
+  <p>My Balance: {{ totalAmount }}</p>
   <p>{{ dataNote }}</p>
 
   <CreateComp v-if="createDialog"></CreateComp>
@@ -66,6 +72,8 @@ export default {
       detailsDialog: false,
       searchDialog: false,
       dataNote: "",
+      sortDataSwitch: true,
+      sortAmountSwitch: true,
       userData: {
         name: "",
         age: "",
@@ -125,6 +133,19 @@ export default {
         name: "ItemDetails",
         params: { itemid: e.target.id },
       });
+    },
+
+    sortByDate() {
+      this.sortDataSwitch = !this.sortDataSwitch;
+      if (this.sortDataSwitch) {
+        this.online.users.sort((a, b) => {
+          return new Date(a.date) - new Date(b.date);
+        });
+      } else {
+        this.online.users.sort((a, b) => {
+          return new Date(b.date) - new Date(a.date);
+        });
+      }
     },
   },
 
