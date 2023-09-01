@@ -4,24 +4,16 @@
   </div>
   <button @click="addBtn">create</button>
   <button @click="searchBtn">search</button>
-  <!-- <ul>
-    <li v-for="user in online.users" :key="user.id">
-      <div id="name">{{ user.name }}</div>
-      <div id="age">{{ user.age }}</div>
-      <button :id="user._id" @click="editBtn(user)">update</button>
-      <button :id="user._id" @click="submitDelete">delete</button>
-      <button :id="user._id" @click="submitDetail">details</button>
-      <button :id="user._id" @click="submitDetailLink">details-links</button>
-    </li>
-  </ul> -->
-
   <table>
     <tr>
-      <th>Item 1</th>
-      <th>Item 2</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Type</th>
+      <th>Tag</th>
+      <th>Remark</th>
       <th>Update</th>
       <th>Delete</th>
-      <th>Details</th>
+      <th>Detail</th>
     </tr>
     <tr v-for="user in online.users" :key="user.id">
       <td>{{ user.date }}</td>
@@ -32,7 +24,7 @@
       <td><button :id="user._id" @click="editBtn(user)">update</button></td>
       <td><button :id="user._id" @click="submitDelete">delete</button></td>
       <td>
-        <button :id="user._id" @click="submitDetailLink">details-links</button>
+        <button :id="user._id" @click="submitDetailLink">details</button>
       </td>
     </tr>
   </table>
@@ -134,23 +126,6 @@ export default {
         name: "ItemDetails",
         params: { itemid: e.target.id },
       });
-    },
-
-    submitDetail(e) {
-      console.log(e.target.id);
-      const codespaces = useCodeSpacesStore();
-      fetch(`${codespaces.csURL}api/account/${e.target.id}`)
-        .then((res) => {
-          console.log(res);
-          return res.text();
-        })
-        .then((data) => {
-          console.log(data);
-          this.detailResults = JSON.parse(data);
-          console.log("detailResults", this.detailResults);
-        });
-
-      this.detailsDialog = !this.detailsDialog;
     },
   },
 
