@@ -29,14 +29,13 @@
     </tr>
   </table>
 
+  <p>Income Total: {{ incomeTotalAmount }}</p>
+  <p>Expense Total: {{ expenseTotalAmount }}</p>
+  <p>Total Amount: {{ totalAmount }}</p>
   <p>{{ dataNote }}</p>
 
   <CreateComp v-if="createDialog"></CreateComp>
   <EditComp v-if="editDialog" :userData="userData"></EditComp>
-  <!-- <DetailsComp
-    v-if="detailsDialog"
-    :detailResults="detailResults"
-  ></DetailsComp> -->
   <SearchComp v-show="searchDialog"></SearchComp>
 </template>
 
@@ -126,6 +125,35 @@ export default {
         name: "ItemDetails",
         params: { itemid: e.target.id },
       });
+    },
+  },
+
+  computed: {
+    totalAmount() {
+      let totalAmount = this.incomeTotalAmount - this.expenseTotalAmount;
+      return Math.round(totalAmount * 100) / 100;
+    },
+
+    incomeTotalAmount() {
+      let incomeArray = this.online.users.filter(
+        (user) => user.type == "Income"
+      );
+      let incomeAmount = incomeArray.reduce(
+        (total, user) => total + user.amount,
+        0
+      );
+      return Math.round(incomeAmount * 100) / 100;
+    },
+
+    expenseTotalAmount() {
+      let expenseArray = this.online.users.filter(
+        (user) => user.type == "Expense"
+      );
+      let expenseAmount = expenseArray.reduce(
+        (total, user) => total + user.amount,
+        0
+      );
+      return Math.round(expenseAmount * 100) / 100;
     },
   },
 
