@@ -10,12 +10,27 @@
       @input="searchBtn"
     />
 
-    <div v-if="searchInput">
-      <div v-for="item in searchResults" :key="item._id">
-        <p>{{ item.name }}</p>
-        <p>{{ item.age }}</p>
-      </div>
-    </div>
+    From:
+    <input type="date" v-model="searchFromDate" @input="searchDateBtn" />
+    To:
+    <input type="date" v-model="searchToDate" @input="searchDateBtn" />
+
+    <table v-if="searchInput || (searchFromDate && searchToDate)">
+      <tr>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Type</th>
+        <th>Tag</th>
+        <th>Remark</th>
+      </tr>
+      <tr v-for="user in searchResults" :key="user._id">
+        <td>{{ user.date }}</td>
+        <td>{{ user.amount }}</td>
+        <td>{{ user.type }}</td>
+        <td>{{ user.tag }}</td>
+        <td>{{ user.remark }}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -23,7 +38,7 @@
 import { useOnlineStore } from "@/store/online";
 import { useCodeSpacesStore } from "@/store/codespaceURL";
 export default {
-  name: "EditComp",
+  name: "SearchComp",
   setup() {
     const online = useOnlineStore();
     const codespaces = useCodeSpacesStore();
@@ -36,21 +51,52 @@ export default {
   data() {
     return {
       searchInput: "",
+      searchFromDate: "",
+      searchToDate: "",
       searchResults: [],
     };
   },
   methods: {
     searchBtn() {
+      this.searchDate = "";
       this.searchResults = [];
       for (let user of this.online.users) {
         let searchRegExp = new RegExp(this.searchInput, "gi");
-        if (searchRegExp.test(user.name)) {
+        if (searchRegExp.test(user.remark)) {
           console.log(user);
           this.searchResults.push(user);
           console.log(this.searchResults);
         }
       }
     },
+
+    searchDateBtn() {
+      this.searchResults = [];
+      for (let user of this.online.users) {
+        const userDate = new Date(user.date);
+        const fromDate = new Date(this.searchFromDate);
+        const toDate = new Date(this.searchToDate);
+
+        if (
+          (!this.searchFromDate || userDate >= fromDate) &&
+          (!this.searchToDate || userDate <= toDate)
+        ) {
+          console.log(user);
+          this.searchResults.push(user);
+        }
+      }
+    },
+    // searchDateBtn() {
+    //   this.searchInput = "";
+    //   this.searchResults = [];
+    //   for (let user of this.online.users) {
+    //     if (this.searchDate == user.date) {
+    //       console.log(user);
+    //       this.searchResults.push(user);
+    //       console.log(this.searchResults);
+    //     }
+    //   }
+    // },
   },
 };
 </script>
