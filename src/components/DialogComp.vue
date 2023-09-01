@@ -18,11 +18,17 @@
 
 <script>
 import { useCodeSpacesStore } from "@/store/codespaceURL";
+import { useOnlineStore } from "@/store/online";
 export default {
   name: "DialogComp",
   setup() {
+    const online = useOnlineStore();
     const codespaces = useCodeSpacesStore();
-    return { codespaces };
+    const lastUserInfo = JSON.parse(localStorage.getItem("lastUserInfo"));
+    if (lastUserInfo) {
+      online.loginUser(lastUserInfo);
+    }
+    return { online, codespaces };
   },
   data() {
     return {
@@ -38,7 +44,11 @@ export default {
         e.preventDefault();
         // let name = document.querySelector("#name1").value;
         // let age = document.querySelector("#age1").value;
-        const formData = { name: this.name, age: this.age };
+        const formData = {
+          name: this.name,
+          age: this.age,
+          userid: this.online.loginUserEach[0]._id,
+        };
         console.log(formData, "formData");
         await fetch(`${codespaces.csURL}api/account/add`, {
           method: "post",

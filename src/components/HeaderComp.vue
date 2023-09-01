@@ -2,13 +2,17 @@
   <div>
     <h4>header component</h4>
     <p>user: {{ online.loginUserEach[0].name }}</p>
+    <button @click="submitLogout">Log out</button>
     <div>
-      <router-link to="Home">Home</router-link>
-      <router-link to="userlist">User-List</router-link>
+      <router-link
+        :to="{ name: 'Home', params: { id: online.loginUserEach[0].name } }"
+        >Home</router-link
+      >
+      <router-link
+        :to="{ name: 'Userlist', params: { id: online.loginUserEach[0].name } }"
+        >User-List</router-link
+      >
     </div>
-    <!-- <ul>
-      <li v-for="user in online.users" :key="user.id">{{ user.name }}</li>
-    </ul> -->
   </div>
 </template>
 
@@ -26,6 +30,12 @@ export default {
       online.loginUser(lastUserInfo);
     }
     return { online };
+  },
+  methods: {
+    submitLogout() {
+      localStorage.removeItem("lastUserInfo");
+      this.$router.push({ name: "Login" });
+    },
   },
 };
 </script>

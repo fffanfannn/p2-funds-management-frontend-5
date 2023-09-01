@@ -34,6 +34,8 @@
     </tr>
   </table>
 
+  <p>{{ dataNote }}</p>
+
   <DialogComp v-if="createDialog"></DialogComp>
   <EditComp v-if="editDialog" :userData="userData"></EditComp>
   <!-- <DetailsComp
@@ -56,6 +58,10 @@ export default {
   setup() {
     const online = useOnlineStore();
     const codespaces = useCodeSpacesStore();
+    const lastUserInfo = JSON.parse(localStorage.getItem("lastUserInfo"));
+    if (lastUserInfo) {
+      online.loginUser(lastUserInfo);
+    }
     return { online, codespaces };
   },
 
@@ -65,6 +71,7 @@ export default {
       editDialog: false,
       detailsDialog: false,
       searchDialog: false,
+      dataNote: "",
       userData: {
         name: "",
         age: "",
@@ -146,14 +153,19 @@ export default {
   },
 
   created() {
-    console.log("11");
     const codespaces = useCodeSpacesStore();
-    fetch(`${codespaces.csURL}api/account/list`)
+    fetch(
+      `${codespaces.csURL}api/account/user/${this.online.loginUserEach[0]._id}`
+    )
       .then((response) => response.json())
       .then((data) => {
-        console.log("created() data:", data);
-        for (let user of data) {
-          this.online.addUser(user);
+        if (data.msg) {
+          this.dataNote = "Please create new data";
+        } else {
+          console.log(data);
+          for (let user of data) {
+            this.online.addUser(user);
+          }
         }
       });
   },
