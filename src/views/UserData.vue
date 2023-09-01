@@ -114,7 +114,7 @@ export default {
           console.log(data);
         });
 
-      // this.$router.push({ name: "Userlist" });
+      // this.$router.push({ name: "UserData" });
       location.reload();
     },
 
@@ -153,6 +153,7 @@ export default {
   },
 
   created() {
+    this.online.users = [];
     const codespaces = useCodeSpacesStore();
     fetch(
       `${codespaces.csURL}api/account/user/${this.online.loginUserEach[0]._id}`

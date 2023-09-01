@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Welcome from "../views/WelcomeView.vue";
 import Main from "../views/MainView.vue";
 import Home from "../views/HomeView.vue";
-import UserList from "../views/UserList.vue";
+import UserData from "../views/UserData.vue";
 import Register from "../views/RegisterView.vue";
 import Login from "../views/LoginView.vue";
 import NotFound from "../views/NotFound.vue";
@@ -21,12 +21,12 @@ const routes = [
         component: Home,
       },
       {
-        path: "userlist",
-        name: "Userlist",
-        component: UserList,
+        path: "userdata",
+        name: "Userdata",
+        component: UserData,
       },
       {
-        path: "userlist/:itemid",
+        path: "userdata/:itemid",
         name: "ItemDetails",
         component: DetailsComp,
       },

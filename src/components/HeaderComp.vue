@@ -9,8 +9,8 @@
         >Home</router-link
       >
       <router-link
-        :to="{ name: 'Userlist', params: { id: online.loginUserEach[0].name } }"
-        >User-List</router-link
+        :to="{ name: 'Userdata', params: { id: online.loginUserEach[0].name } }"
+        >My Data</router-link
       >
     </div>
   </div>

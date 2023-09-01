@@ -7,7 +7,6 @@ export const useOnlineStore = defineStore("online", {
   },
   actions: {
     addUser(user) {
-      this.user = [];
       this.users.push(user);
     },
 
