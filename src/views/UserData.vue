@@ -24,8 +24,10 @@
       <th>Details</th>
     </tr>
     <tr v-for="user in online.users" :key="user.id">
-      <td id="name">{{ user.name }}</td>
-      <td id="age">{{ user.age }}</td>
+      <td>{{ user.date }}</td>
+      <td>{{ user.amount }}</td>
+      <td>{{ user.tag }}</td>
+      <td>{{ user.remark }}</td>
       <td><button :id="user._id" @click="editBtn(user)">update</button></td>
       <td><button :id="user._id" @click="submitDelete">delete</button></td>
       <td>
@@ -36,7 +38,7 @@
 
   <p>{{ dataNote }}</p>
 
-  <DialogComp v-if="createDialog"></DialogComp>
+  <CreateComp v-if="createDialog"></CreateComp>
   <EditComp v-if="editDialog" :userData="userData"></EditComp>
   <!-- <DetailsComp
     v-if="detailsDialog"
@@ -48,13 +50,13 @@
 <script>
 import { useOnlineStore } from "@/store/online";
 import { useCodeSpacesStore } from "@/store/codespaceURL";
-import DialogComp from "@/components/DialogComp.vue";
+import CreateComp from "@/components/CreateComp.vue";
 import EditComp from "@/components/EditComp.vue";
 // import DetailsComp from "@/components/DetailsComp.vue";
 import SearchComp from "@/components/SearchComp.vue";
 
 export default {
-  name: "HeaderComp",
+  name: "UserData",
   setup() {
     const online = useOnlineStore();
     const codespaces = useCodeSpacesStore();
@@ -81,9 +83,8 @@ export default {
   },
 
   components: {
-    DialogComp,
+    CreateComp,
     EditComp,
-    // DetailsComp,
     SearchComp,
   },
 

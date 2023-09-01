@@ -1,18 +1,14 @@
 <template>
   <div>
-    <h4>dialogComp.vue</h4>
+    <h4>createComp.vue</h4>
     <form action="">
-      <input
-        type="text"
-        v-model="name"
-        id="name"
-        name="name"
-        placeholder="Name"
-      />
-      <input type="text" v-model="age" id="age" name="age" placeholder="Age" />
+      <input type="date" v-model="date" name="date" placeholder="Date" />
+      <input type="text" v-model="amount" name="amount" placeholder="Amount" />
+      <input type="text" v-model="remark" name="remark" placeholder="Remark" />
       <button type="submit" @click="submitCreate">Create</button>
     </form>
     <button>close</button>
+    <p>{{ createMsg }}</p>
   </div>
 </template>
 
@@ -20,7 +16,7 @@
 import { useCodeSpacesStore } from "@/store/codespaceURL";
 import { useOnlineStore } from "@/store/online";
 export default {
-  name: "DialogComp",
+  name: "CreateComp",
   setup() {
     const online = useOnlineStore();
     const codespaces = useCodeSpacesStore();
@@ -34,6 +30,7 @@ export default {
     return {
       name: "",
       age: "",
+      createMsg: "",
     };
   },
   methods: {
@@ -44,9 +41,15 @@ export default {
         e.preventDefault();
         // let name = document.querySelector("#name1").value;
         // let age = document.querySelector("#age1").value;
+        if (!Number(this.amount)) {
+          this.createMsg = "Amount must be a number";
+          return;
+        }
         const formData = {
-          name: this.name,
-          age: this.age,
+          date: this.date,
+          amount: Number(this.amount),
+          tag: "default",
+          remark: this.remark,
           userid: this.online.loginUserEach[0]._id,
         };
         console.log(formData, "formData");
