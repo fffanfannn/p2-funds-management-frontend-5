@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import Welcome from "../views/WelcomeView.vue";
 import Main from "../views/MainView.vue";
 import Home from "../views/HomeView.vue";
 import UserList from "../views/UserList.vue";
@@ -9,7 +10,7 @@ import DetailsComp from "../components/DetailsComp.vue";
 
 const routes = [
   {
-    path: "/main",
+    path: "/main/:id",
     name: "Main",
     component: Main,
     // redirect: "/main/home",
@@ -25,7 +26,7 @@ const routes = [
         component: UserList,
       },
       {
-        path: "userlist/:id",
+        path: "userlist/:itemid",
         name: "ItemDetails",
         component: DetailsComp,
       },
@@ -33,15 +34,22 @@ const routes = [
   },
 
   {
-    path: "/register",
-    name: "Register",
-    component: Register,
-  },
+    path: "/",
+    name: "Welcome",
+    component: Welcome,
+    children: [
+      {
+        path: "/register",
+        name: "Register",
+        component: Register,
+      },
 
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
+      {
+        path: "/login",
+        name: "Login",
+        component: Login,
+      },
+    ],
   },
 
   {

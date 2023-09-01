@@ -1,11 +1,31 @@
 <template>
   <div>
-    <h1>This is a register page</h1>
+    <h1>Sign Up</h1>
     <form>
-      <input type="text" id="name" name="name" placeholder="Name" />
-      <input type="text" id="age" name="age" placeholder="Age" />
-      <button type="submit" @click="submitRegister">Submit</button>
+      *<input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Username"
+        required
+      />
+      *<input
+        type="email"
+        id="email"
+        name="passord"
+        placeholder="Email"
+        required
+      />
+      *<input
+        type="password"
+        id="password"
+        name="passord"
+        placeholder="Password"
+        required
+      />
+      <button type="submit" @click="submitRegister">Sign Up</button>
     </form>
+    <p>{{ registerNote }}</p>
   </div>
 </template>
 
@@ -13,14 +33,20 @@
 import { useCodeSpacesStore } from "@/store/codespaceURL";
 export default {
   name: "RegisterView",
+  data() {
+    return {
+      registerNote: "",
+    };
+  },
   methods: {
     submitRegister() {
       const form = document.querySelector("form");
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         let name = document.querySelector("#name").value;
-        let age = document.querySelector("#age").value;
-        const formData = { name, age };
+        let email = document.querySelector("#email").value;
+        let password = document.querySelector("#password").value;
+        const formData = { name, email, password };
         const codespaces = useCodeSpacesStore();
         fetch(`${codespaces.csURL}api/user/register`, {
           method: "post",
@@ -31,17 +57,19 @@ export default {
           },
         })
           .then((res) => {
-            console.log("testAPI() res:", res);
+            console.log(res);
             if (res.status == 200) {
-              alert("Register success");
-              this.$router.push("/login");
+              this.registerNote = "Register success";
+              setTimeout(() => {
+                this.$router.push("/login");
+              }, 1500);
             } else {
-              alert("Register failed");
+              this.registerNote = "Username or email already exists";
             }
-            // return res.text();
+            return res.text();
           })
           .then((data) => {
-            console.log("testAPI() data:", data);
+            console.log(data);
           });
       });
     },

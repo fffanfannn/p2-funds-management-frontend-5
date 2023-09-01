@@ -117,12 +117,14 @@ export default {
       await fetch(`${codespaces.csURL}api/account/${e.target.id}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log("detail() data:", data);
-          // console.log("created() data:", data);
+          console.log("detail() data:", data, typeof data);
           this.online.detailObject(data);
         });
 
-      this.$router.push({ name: "ItemDetails", params: { id: e.target.id } });
+      this.$router.push({
+        name: "ItemDetails",
+        params: { itemid: e.target.id },
+      });
     },
 
     submitDetail(e) {
