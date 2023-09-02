@@ -1,7 +1,13 @@
 import { defineStore } from "pinia";
 
 export const useOnlineStore = defineStore("online", {
-  state: () => ({ users: [], detailArray: [], loginUserEach: [], test: [] }),
+  state: () => ({
+    users: [],
+    detailArray: [],
+    loginUserEach: [],
+    allUsersList: [],
+    test: [],
+  }),
   getters: {
     getUsers: (state) => state.users,
   },
@@ -18,6 +24,10 @@ export const useOnlineStore = defineStore("online", {
       this.loginUserEach = [];
       localStorage.setItem("lastUserInfo", JSON.stringify(data));
       this.loginUserEach.push(data);
+    },
+
+    userList(data) {
+      this.allUsersList.push(data);
     },
 
     addTest(data) {

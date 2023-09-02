@@ -14,7 +14,6 @@
 <script>
 import HeaderComp from "@/components/HeaderComp.vue";
 import SideBarComp from "@/components/SideBarComp.vue";
-// import UserData from "@/views/UserData.vue";
 
 export default {
   name: "MainView",

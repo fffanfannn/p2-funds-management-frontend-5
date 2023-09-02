@@ -10,6 +10,13 @@
         :to="{ name: 'Userdata', params: { id: online.loginUserEach[0].name } }"
         >My Data</router-link
       >
+      <router-link
+        :to="{
+          name: 'Statistics',
+          params: { id: online.loginUserEach[0].name },
+        }"
+        >My Chart</router-link
+      >
     </div>
   </div>
 </template>
