@@ -55,6 +55,10 @@ export default {
     return {
       registerNote: "",
       isVip: true,
+      name: "",
+      email: "",
+      password: "",
+      vipOrNot: false,
     };
   },
   methods: {

@@ -4,7 +4,7 @@
     Welcome
     <p>{{ online.loginUserEach[0].userType }}:</p>
     <p>{{ online.loginUserEach[0].name }}</p>
-    <p>{{ vipMsg }}</p>
+    <p>{{ online.loginUserEach[0].isVip ? "VIP" : "" }}</p>
     <button @click="submitLogout">Log out</button>
   </div>
 </template>
@@ -23,24 +23,12 @@ export default {
     }
     return { online };
   },
-  data() {
-    return {
-      counter: 1,
-      vipMsg: "",
-    };
-  },
+
   methods: {
     submitLogout() {
       localStorage.removeItem("lastUserInfo");
       this.$router.push({ name: "Login" });
     },
-  },
-  created() {
-    if (this.online.loginUserEach[0].isVip === true) {
-      this.vipMsg = "VIP";
-    } else {
-      this.vipMsg = "";
-    }
   },
 };
 </script>

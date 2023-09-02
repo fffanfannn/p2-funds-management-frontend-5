@@ -1,7 +1,11 @@
 <template>
   <div>
     <h4>Details items</h4>
-    <p>{{ online.detailArray }}</p>
+    <p>{{ online.detailArray[0].date }}</p>
+    <p>{{ online.detailArray[0].amount }}</p>
+    <p>{{ online.detailArray[0].type }}</p>
+    <p>{{ online.detailArray[0].tag }}</p>
+    <p>{{ online.detailArray[0].remark }}</p>
   </div>
 </template>
 
