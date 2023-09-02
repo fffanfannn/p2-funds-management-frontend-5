@@ -7,15 +7,6 @@
     <p>{{ vipMsg }}</p>
     <button @click="submitLogout">Log out</button>
     <div>
-      <router-link
-        :to="{ name: 'Home', params: { id: online.loginUserEach[0].name } }"
-        >Home</router-link
-      >
-      <router-link
-        :to="{ name: 'Userdata', params: { id: online.loginUserEach[0].name } }"
-        >My Data</router-link
-      >
-
       <h5>customize tag</h5>
       <input type="text" value="abc" />
       <button @click="addTag(index)">+</button>
