@@ -73,13 +73,6 @@ export default {
       dataNote: "",
       sortDataSwitch: true,
       sortAmountSwitch: true,
-      listData: {
-        date: "",
-        amount: "",
-        type: "",
-        tag: "",
-        remark: "",
-      },
       detailResults: {},
     };
   },

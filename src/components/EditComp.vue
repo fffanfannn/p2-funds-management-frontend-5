@@ -2,12 +2,7 @@
   <div>
     <h4>editComp.vue</h4>
     <form action="">
-      <input
-        type="date"
-        v-model="date"
-        name="date"
-        :placeholder="listData.date"
-      />
+      <input type="date" v-model="date" name="date" />
       <input
         type="text"
         v-model="amount"
@@ -54,8 +49,7 @@ export default {
 
   data() {
     return {
-      nameNew: "",
-      ageNew: "",
+      date: this.listData.date,
       createMsg: "",
     };
   },
@@ -71,7 +65,6 @@ export default {
           this.createMsg = "Amount must be a number";
           return;
         }
-        console.log(this.userData._id, "this.userData._id");
         const selectedType = document.querySelector("#transactionType").value;
         const selectedTag = document.querySelector("#transactionTag").value;
         const formData = {
@@ -83,7 +76,7 @@ export default {
         };
         console.log(formData, "formData");
         await fetch(
-          `${codespaces.csURL}api/account/edit/${this.userData._id}`,
+          `${codespaces.csURL}api/account/edit/${this.listData._id}`,
           {
             method: "post",
             body: JSON.stringify(formData),
