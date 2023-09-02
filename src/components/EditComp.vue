@@ -9,7 +9,7 @@
         name="amount"
         :placeholder="listData.amount"
       />
-      <select id="transactionType" name="type">
+      <select id="transactionType" name="type" v-model="selectedType">
         <option value="Income">Income</option>
         <option value="Expense">Expense</option>
       </select>
@@ -50,6 +50,7 @@ export default {
   data() {
     return {
       date: this.listData.date,
+      selectedType: this.listData.type,
       createMsg: "",
     };
   },
