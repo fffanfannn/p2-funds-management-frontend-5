@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     submitCreate() {
+      this.createMsg = "";
       const codespaces = useCodeSpacesStore();
       const form = document.querySelector("form");
       form.addEventListener("submit", async (e) => {
