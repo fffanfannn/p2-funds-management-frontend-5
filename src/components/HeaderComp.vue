@@ -8,9 +8,6 @@
     <button @click="submitLogout">Log out</button>
     <div>
       <h5>customize tag</h5>
-      <input type="text" value="abc" />
-      <button @click="addTag(index)">+</button>
-
       <p>{{ online.test }}</p>
 
       <div v-for="(tag, index) in tags" :key="index">

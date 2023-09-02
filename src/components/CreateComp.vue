@@ -71,7 +71,6 @@ export default {
         })
           .then((res) => {
             console.log(res);
-            alert("Account item created successfully");
             return res.text();
           })
           .then((data) => {
