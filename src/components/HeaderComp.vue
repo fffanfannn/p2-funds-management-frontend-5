@@ -4,7 +4,7 @@
     Welcome
     <p>{{ online.loginUserEach[0].userType }}:</p>
     <p>{{ online.loginUserEach[0].name }}</p>
-    <p>{{ online.loginUserEach[0].isVip }}</p>
+    <p>{{ vipMsg }}</p>
     <button @click="submitLogout">Log out</button>
     <div>
       <router-link
@@ -55,6 +55,7 @@ export default {
   data() {
     return {
       counter: 1,
+      vipMsg: "",
     };
   },
   methods: {
@@ -62,12 +63,6 @@ export default {
       localStorage.removeItem("lastUserInfo");
       this.$router.push({ name: "Login" });
     },
-
-    // addTags() {
-    //   this.counter++;
-    //   console.log("counter", typeof this.counter);
-    //   return this.counter;
-    // },
     addTag(index) {
       this.tags.splice(index + 1, 0, { name: "" });
       console.log("addTag", this.tags, index);
@@ -79,6 +74,13 @@ export default {
       const inputValues = this.tags.map((tag) => tag.name);
       console.log("All Input Values:", inputValues);
     },
+  },
+  created() {
+    if (this.online.loginUserEach[0].isVip === true) {
+      this.vipMsg = "VIP";
+    } else {
+      this.vipMsg = "";
+    }
   },
 };
 </script>

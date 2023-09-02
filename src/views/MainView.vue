@@ -3,7 +3,10 @@
     <aside>Main page: sidebar<SideBarComp /></aside>
     <div>
       <header>Main page: header <HeaderComp /></header>
-      <main>main-part(router-view)<router-view></router-view></main>
+      <main>
+        main-part(router-view)
+        <router-view></router-view>
+      </main>
     </div>
   </section>
 </template>
@@ -11,12 +14,14 @@
 <script>
 import HeaderComp from "@/components/HeaderComp.vue";
 import SideBarComp from "@/components/SideBarComp.vue";
+// import UserData from "@/views/UserData.vue";
 
 export default {
   name: "MainView",
   components: {
     SideBarComp,
     HeaderComp,
+    // UserData,
   },
 };
 </script>
