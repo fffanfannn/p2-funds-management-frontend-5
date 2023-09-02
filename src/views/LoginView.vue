@@ -68,10 +68,16 @@ export default {
               this.loginNote = "Login success";
               console.log(data);
               this.online.loginUser(data);
-              this.$router.push({
-                name: "Main",
-                params: { id: data.name },
-              });
+              if (data.userType == "admin") {
+                this.$router.push({
+                  name: "Admindata",
+                });
+              } else if (data.userType == "user") {
+                this.$router.push({
+                  name: "Main",
+                  params: { id: data.name },
+                });
+              }
             }
           });
       });

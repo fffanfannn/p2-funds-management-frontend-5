@@ -3,6 +3,7 @@ import Welcome from "../views/WelcomeView.vue";
 import Main from "../views/MainView.vue";
 import Home from "../views/HomeView.vue";
 import UserData from "../views/UserData.vue";
+import AdminData from "../views/AdminData.vue";
 import Register from "../views/RegisterView.vue";
 import Login from "../views/LoginView.vue";
 import NotFound from "../views/NotFound.vue";
@@ -31,6 +32,12 @@ const routes = [
         component: DetailsComp,
       },
     ],
+  },
+
+  {
+    path: "/admin",
+    name: "Admindata",
+    component: AdminData,
   },
 
   {
