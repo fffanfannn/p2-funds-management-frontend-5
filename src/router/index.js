@@ -13,7 +13,7 @@ const routes = [
     path: "/main/:id",
     name: "Main",
     component: Main,
-    // redirect: "/main/home",
+    redirect: { name: "Userdata" },
     children: [
       {
         path: "home",
