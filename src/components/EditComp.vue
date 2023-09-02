@@ -2,8 +2,18 @@
   <div>
     <h4>editComp.vue</h4>
     <form action="">
-      <input type="date" v-model="date" name="date" placeholder="Date" />
-      <input type="text" v-model="amount" name="amount" placeholder="Amount" />
+      <input
+        type="date"
+        v-model="date"
+        name="date"
+        :placeholder="listData.date"
+      />
+      <input
+        type="text"
+        v-model="amount"
+        name="amount"
+        :placeholder="listData.amount"
+      />
       <select id="transactionType" name="type">
         <option value="Income">Income</option>
         <option value="Expense">Expense</option>
@@ -11,7 +21,12 @@
       <select id="transactionTag" name="tag">
         <option value="Default">Default</option>
       </select>
-      <input type="text" v-model="remark" name="remark" placeholder="Remark" />
+      <input
+        type="text"
+        v-model="remark"
+        name="remark"
+        :placeholder="listData.remark"
+      />
       <button type="submit" @click="submitUpdate">Update</button>
     </form>
     <button>close</button>
@@ -34,7 +49,7 @@ export default {
     return { online, codespaces };
   },
   props: {
-    userData: Object,
+    listData: Object,
   },
 
   data() {
@@ -65,7 +80,6 @@ export default {
           type: selectedType,
           tag: selectedTag,
           remark: this.remark,
-          userid: this.online.loginUserEach[0]._id,
         };
         console.log(formData, "formData");
         await fetch(
@@ -89,6 +103,10 @@ export default {
         location.reload();
       });
     },
+  },
+
+  created() {
+    console.log("listDate", this.listData);
   },
 };
 </script>

@@ -41,7 +41,7 @@
   <p>{{ dataNote }}</p>
 
   <CreateComp v-if="createDialog"></CreateComp>
-  <EditComp v-if="editDialog" :userData="userData"></EditComp>
+  <EditComp v-if="editDialog" :listData="listData"></EditComp>
   <SearchComp v-show="searchDialog"></SearchComp>
 </template>
 
@@ -50,7 +50,6 @@ import { useOnlineStore } from "@/store/online";
 import { useCodeSpacesStore } from "@/store/codespaceURL";
 import CreateComp from "@/components/CreateComp.vue";
 import EditComp from "@/components/EditComp.vue";
-// import DetailsComp from "@/components/DetailsComp.vue";
 import SearchComp from "@/components/SearchComp.vue";
 
 export default {
@@ -74,9 +73,12 @@ export default {
       dataNote: "",
       sortDataSwitch: true,
       sortAmountSwitch: true,
-      userData: {
-        name: "",
-        age: "",
+      listData: {
+        date: "",
+        amount: "",
+        type: "",
+        tag: "",
+        remark: "",
       },
       detailResults: {},
     };
@@ -98,7 +100,7 @@ export default {
 
     editBtn(user) {
       this.editDialog = !this.editDialog;
-      this.userData = user;
+      this.listData = user;
     },
 
     async submitDelete(e) {
