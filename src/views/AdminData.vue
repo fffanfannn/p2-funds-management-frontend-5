@@ -14,7 +14,7 @@
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.userType }}</td>
-        <td>{{ user.isVip }}</td>
+        <td>{{ user.isVip ? "Yes" : "No" }}</td>
       </tr>
     </table>
   </section>
