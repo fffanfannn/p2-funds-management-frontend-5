@@ -58,7 +58,8 @@ export default {
   },
   methods: {
     searchBtn() {
-      this.searchDate = "";
+      this.searchFromDate = "";
+      this.searchToDate = "";
       this.searchResults = [];
       for (let user of this.online.users) {
         let searchRegExp = new RegExp(this.searchInput, "gi");
@@ -71,6 +72,7 @@ export default {
     },
 
     searchDateBtn() {
+      this.searchInput = "";
       this.searchResults = [];
       for (let user of this.online.users) {
         const userDate = new Date(user.date);
@@ -86,17 +88,6 @@ export default {
         }
       }
     },
-    // searchDateBtn() {
-    //   this.searchInput = "";
-    //   this.searchResults = [];
-    //   for (let user of this.online.users) {
-    //     if (this.searchDate == user.date) {
-    //       console.log(user);
-    //       this.searchResults.push(user);
-    //       console.log(this.searchResults);
-    //     }
-    //   }
-    // },
   },
 };
 </script>
