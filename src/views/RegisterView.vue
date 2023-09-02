@@ -6,13 +6,15 @@
         type="text"
         id="name"
         name="name"
+        v-model="name"
         placeholder="Username"
         required
       />
       *<input
         type="email"
         id="email"
-        name="passord"
+        name="email"
+        v-model="email"
         placeholder="Email"
         required
       />
@@ -20,9 +22,25 @@
         type="password"
         id="password"
         name="passord"
+        v-model="password"
         placeholder="Password"
         required
       />
+      <select id="usertype" name="usertype" @input="vipBox">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <div v-show="isVip">
+        <input
+          type="checkbox"
+          id="vipuser"
+          name="vipuser"
+          value="vipUser"
+          v-model="vipOrNot"
+        />
+        <label for="terms">VIP</label>
+      </div>
       <button type="submit" @click="submitRegister">Sign Up</button>
     </form>
     <p>{{ registerNote }}</p>
@@ -36,17 +54,30 @@ export default {
   data() {
     return {
       registerNote: "",
+      isVip: true,
     };
   },
   methods: {
+    vipBox() {
+      const usertype = document.querySelector("#usertype").value;
+      if (usertype == "admin") {
+        this.isVip = false;
+      } else {
+        this.isVip = true;
+      }
+    },
     submitRegister() {
       const form = document.querySelector("form");
       form.addEventListener("submit", (e) => {
         e.preventDefault();
-        let name = document.querySelector("#name").value;
-        let email = document.querySelector("#email").value;
-        let password = document.querySelector("#password").value;
-        const formData = { name, email, password };
+        let userType = document.querySelector("#usertype").value;
+        const formData = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          userType: userType,
+          isVip: this.vipOrNot,
+        };
         const codespaces = useCodeSpacesStore();
         fetch(`${codespaces.csURL}api/user/register`, {
           method: "post",

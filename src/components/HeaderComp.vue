@@ -1,7 +1,10 @@
 <template>
   <div>
     <h4>header component</h4>
-    <p>user: {{ online.loginUserEach[0].name }}</p>
+    Welcome
+    <p>{{ online.loginUserEach[0].userType }}:</p>
+    <p>{{ online.loginUserEach[0].name }}</p>
+    <p>{{ online.loginUserEach[0].isVip }}</p>
     <button @click="submitLogout">Log out</button>
     <div>
       <router-link
