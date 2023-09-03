@@ -1,10 +1,15 @@
 <template>
-  <div>
+  <div v-if="online.loginUserEach[0].isVip">
     <h4>chart component</h4>
+    <p>{{ dataNote }}</p>
     <p>{{ online.users }}</p>
     <echarts class="echart" :option="option3" />
     <echarts class="echart" :option="option4" />
     <echarts class="echart" :option="option5" />
+  </div>
+  <div v-if="!online.loginUserEach[0].isVip">
+    <h4>chart component</h4>
+    <p>Please join us as VIP users</p>
   </div>
 </template>
 
@@ -18,6 +23,7 @@ export default {
     const online = useOnlineStore();
     const codespaces = useCodeSpacesStore();
     const lastUserInfo = JSON.parse(localStorage.getItem("lastUserInfo"));
+    const dataNote = ref("");
     if (lastUserInfo) {
       online.loginUser(lastUserInfo);
     }
@@ -28,8 +34,7 @@ export default {
       .then((response) => response.json())
       .then((data) => {
         if (data.msg) {
-          alert("Please create new data");
-          // this.dataNote = "Please create new data";
+          dataNote.value = "Please create new data";
         } else {
           console.log(data);
           for (let user of data) {
@@ -123,7 +128,7 @@ export default {
       ];
     });
 
-    return { online, codespaces, option3, option4, option5 };
+    return { online, codespaces, dataNote, option3, option4, option5 };
   },
 };
 </script>
