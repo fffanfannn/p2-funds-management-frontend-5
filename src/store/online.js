@@ -17,6 +17,7 @@ export const useOnlineStore = defineStore("online", {
     },
 
     detailObject(data) {
+      this.detailArray = [];
       this.detailArray.push(data);
     },
 
