@@ -33,6 +33,23 @@ export default {
       }));
     }, 3000);
 
+    const data1 = ref([
+      { value: 50, name: "Mon" },
+      { value: 125, name: "Tue" },
+      { value: 245, name: "Wed" },
+      { value: 147, name: "Thur" },
+      { value: 260, name: "Fri" },
+      { value: 105, name: "Sat" },
+      { value: 326, name: "Sun" },
+    ]);
+
+    setInterval(() => {
+      data1.value = data1.value.map((item) => ({
+        ...item,
+        value: Math.random() * 100,
+      }));
+    }, 3000);
+
     const option1 = computed(() => {
       return {
         title: {
@@ -51,6 +68,24 @@ export default {
             smooth: true,
             areaStyle: {},
             data: data.value.map((d) => d.value),
+            itemStyle: {
+              normal: {
+                barBorderColor: "rgb(25, 183, 207, 0.7)",
+                color: "rgb(25, 183, 207, 0.7)",
+              },
+            },
+          },
+          {
+            type: "line",
+            smooth: true,
+            areaStyle: {},
+            data: data1.value.map((d) => d.value),
+            itemStyle: {
+              normal: {
+                barBorderColor: "rgb(245, 140, 143, 0.7)",
+                color: "rgb(245, 140, 143, 0.7)",
+              },
+            },
           },
         ],
       };
@@ -74,7 +109,7 @@ export default {
               value: d.value,
               name: d.name,
             })),
-            radius: ["40%", "70%"],
+            radius: ["20%", "70%"],
             roseType: "area",
           },
         ],

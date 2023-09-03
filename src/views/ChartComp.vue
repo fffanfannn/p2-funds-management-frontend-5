@@ -2,9 +2,8 @@
   <div v-if="online.loginUserEach[0].isVip">
     <h4>chart component</h4>
     <p>{{ dataNote }}</p>
-    <p>{{ online.users }}</p>
-    <echarts class="echart" :option="option3" />
-    <echarts class="echart" :option="option4" />
+    <echarts class="echart" :option="option6" />
+    <echarts class="echart" :option="option7" />
     <echarts class="echart" :option="option5" />
   </div>
   <div v-if="!online.loginUserEach[0].isVip">
@@ -43,47 +42,8 @@ export default {
         }
       });
 
-    const option3 = ref({
-      title: {
-        text: "Income Chart",
-      },
-      xAxis: {
-        data: [],
-      },
-      yAxis: {
-        type: "value",
-      },
-      series: [
-        {
-          type: "line",
-          smooth: true,
-          // areaStyle: {},
-          data: [],
-        },
-      ],
-    });
-
-    const option4 = ref({
-      title: {
-        text: "Expense Chart",
-      },
-      xAxis: {
-        data: [],
-      },
-      yAxis: {
-        type: "value",
-      },
-      series: [
-        {
-          type: "line",
-          smooth: true,
-          // areaStyle: {},
-          data: [],
-        },
-      ],
-    });
-
     const option5 = ref({
+      animationDuration: 3000,
       title: {
         text: "Income/Expense Pie",
       },
@@ -95,9 +55,85 @@ export default {
       series: [
         {
           type: "pie",
-          radius: ["50%", "70%"],
-          // roseType: "area",
+          radius: ["10%", "70%"],
+          roseType: "area",
           data: [],
+          color: ["rgb(25, 183, 207)", "rgb(245, 140, 143)"],
+        },
+      ],
+    });
+
+    const option6 = ref({
+      animationDuration: 2000,
+      title: {
+        text: "Income Chart",
+      },
+
+      yAxis: {
+        data: [],
+      },
+      xAxis: {
+        type: "value",
+      },
+      series: [
+        {
+          name: "By date",
+          type: "bar",
+          itemStyle: {
+            normal: {
+              barBorderColor: "rgb(25, 183, 207)",
+              color: "rgb(25, 183, 207)",
+            },
+          },
+          data: [],
+        },
+      ],
+    });
+
+    const option7 = ref({
+      animationDuration: 2000,
+      title: {
+        text: "Income Expense Line",
+      },
+      legend: {},
+      xAxis: {
+        data: [],
+      },
+      yAxis: {
+        type: "value",
+      },
+      series: [
+        {
+          name: "Income",
+          type: "line",
+          smooth: true,
+          areaStyle: {},
+          data: [],
+          markPoint: {
+            data: [{ type: "max", name: "max" }],
+          },
+          itemStyle: {
+            normal: {
+              barBorderColor: "rgb(25, 183, 207)",
+              color: "rgb(25, 183, 207)",
+            },
+          },
+        },
+        {
+          name: "Expense",
+          type: "line",
+          smooth: true,
+          areaStyle: {},
+          data: [],
+          markPoint: {
+            data: [{ type: "max", name: "max" }],
+          },
+          itemStyle: {
+            normal: {
+              barBorderColor: "rgb(245, 140, 143)",
+              color: "rgb(245, 140, 143)",
+            },
+          },
         },
       ],
     });
@@ -110,10 +146,14 @@ export default {
       });
       let incomeArray = online.users.filter((user) => user.type == "Income");
       let expenseArray = online.users.filter((user) => user.type == "Expense");
-      option3.value.xAxis.data = incomeArray.map((user) => user.date);
-      option3.value.series[0].data = incomeArray.map((user) => user.amount);
-      option4.value.xAxis.data = expenseArray.map((user) => user.date);
-      option4.value.series[0].data = expenseArray.map((user) => user.amount);
+      option6.value.yAxis.data = online.users.map((user) => user.date);
+      option6.value.series[0].data = online.users.map((user) => {
+        if (user.type == "Income") {
+          return user.amount;
+        } else {
+          return -user.amount;
+        }
+      });
       let incomeAmount = incomeArray.reduce(
         (total, user) => total + user.amount,
         0
@@ -126,9 +166,31 @@ export default {
         { value: incomeAmount, name: "Income" },
         { value: expenseAmount, name: "Expense" }, // You can replace this with your desired data
       ];
+      option7.value.xAxis.data = online.users.map((user) => user.date);
+      option7.value.series[0].data = online.users.map((user) => {
+        if (user.type == "Income") {
+          return user.amount;
+        } else {
+          return 0;
+        }
+      });
+      option7.value.series[1].data = online.users.map((user) => {
+        if (user.type == "Expense") {
+          return user.amount;
+        } else {
+          return 0;
+        }
+      });
     });
 
-    return { online, codespaces, dataNote, option3, option4, option5 };
+    return {
+      online,
+      codespaces,
+      dataNote,
+      option5,
+      option6,
+      option7,
+    };
   },
 };
 </script>
@@ -137,7 +199,7 @@ export default {
 .echart {
   width: 600px;
   height: 400px;
-  border: 1px solid #ccc;
+  border: 1px solid darkgrey;
   /* padding: 1rem; */
 }
 </style>
