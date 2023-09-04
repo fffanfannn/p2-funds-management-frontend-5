@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h5>customize tag</h5>
+    <h5>Customize Tags</h5>
     <button @click="addTag">+</button>
     <button @click="confirmTag">confirm</button>
     <div v-for="(tag, index) in tags" :key="index">
@@ -9,6 +9,7 @@
     </div>
 
     <ul>
+      My Tags
       <li v-for="(tag, index) in confirmedTags" :key="index">
         {{ tag }}
       </li>

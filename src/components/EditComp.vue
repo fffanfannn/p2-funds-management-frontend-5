@@ -52,6 +52,8 @@ export default {
       date: this.listData.date,
       selectedType: this.listData.type,
       createMsg: "",
+      amount: "",
+      remark: "",
     };
   },
   methods: {
