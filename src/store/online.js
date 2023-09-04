@@ -6,7 +6,7 @@ export const useOnlineStore = defineStore("online", {
     detailArray: [],
     loginUserEach: [],
     allUsersList: [],
-    test: [],
+    customizeTags: [],
   }),
   getters: {
     getUsers: (state) => state.users,
@@ -31,8 +31,8 @@ export const useOnlineStore = defineStore("online", {
       this.allUsersList.push(data);
     },
 
-    addTest(data) {
-      this.test.push(data);
+    customizeTag(data) {
+      this.customizeTags.push(data);
     },
   },
 });

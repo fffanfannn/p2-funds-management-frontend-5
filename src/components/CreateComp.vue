@@ -10,6 +10,13 @@
       </select>
       <select id="transactionTag" name="tag">
         <option value="Default">Default</option>
+        <option
+          v-for="(tag, index) in online.customizeTags"
+          :key="index"
+          :value="tag"
+        >
+          {{ tag }}
+        </option>
       </select>
       <input type="text" v-model="remark" name="remark" placeholder="Remark" />
       <button type="submit" @click="submitCreate">Create</button>
