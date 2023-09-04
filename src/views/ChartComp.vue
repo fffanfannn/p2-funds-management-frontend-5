@@ -9,11 +9,13 @@
   <div v-if="!online.loginUserEach[0].isVip">
     <h4>chart component</h4>
     <p>Please join us as VIP users</p>
+    <echarts class="echart" :option="option1" />
+    <echarts class="echart" :option="option2" />
   </div>
 </template>
 
 <script>
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { useOnlineStore } from "@/store/online";
 import { useCodeSpacesStore } from "@/store/codespaceURL";
 export default {
@@ -139,8 +141,6 @@ export default {
     });
 
     watch(online.users, () => {
-      // Update option3 based on online.users data
-
       online.users.sort((a, b) => {
         return new Date(a.date) - new Date(b.date);
       });
@@ -183,10 +183,112 @@ export default {
       });
     });
 
+    const data = ref([
+      { value: 50, name: "Mon" },
+      { value: 125, name: "Tue" },
+      { value: 245, name: "Wed" },
+      { value: 147, name: "Thur" },
+      { value: 260, name: "Fri" },
+      { value: 105, name: "Sat" },
+      { value: 326, name: "Sun" },
+    ]);
+
+    setInterval(() => {
+      data.value = data.value.map((item) => ({
+        ...item,
+        value: Math.random() * 100,
+      }));
+    }, 3000);
+
+    const data1 = ref([
+      { value: 50, name: "Mon" },
+      { value: 125, name: "Tue" },
+      { value: 245, name: "Wed" },
+      { value: 147, name: "Thur" },
+      { value: 260, name: "Fri" },
+      { value: 105, name: "Sat" },
+      { value: 326, name: "Sun" },
+    ]);
+
+    setInterval(() => {
+      data1.value = data1.value.map((item) => ({
+        ...item,
+        value: Math.random() * 100,
+      }));
+    }, 3000);
+
+    const option1 = computed(() => {
+      return {
+        title: {
+          text: "Sample Chart",
+        },
+        legend: {},
+        xAxis: {
+          data: data.value.map((d) => d.name),
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            type: "line",
+            smooth: true,
+            areaStyle: {},
+            data: data.value.map((d) => d.value),
+            itemStyle: {
+              normal: {
+                barBorderColor: "rgb(25, 183, 207, 0.7)",
+                color: "rgb(25, 183, 207, 0.7)",
+              },
+            },
+          },
+          {
+            type: "line",
+            smooth: true,
+            areaStyle: {},
+            data: data1.value.map((d) => d.value),
+            itemStyle: {
+              normal: {
+                barBorderColor: "rgb(245, 140, 143, 0.7)",
+                color: "rgb(245, 140, 143, 0.7)",
+              },
+            },
+          },
+        ],
+      };
+    });
+
+    const option2 = computed(() => {
+      return {
+        title: {
+          text: "Sample Chart",
+          left: "center",
+        },
+
+        legend: {
+          orient: "vertical",
+          left: "left",
+        },
+        series: [
+          {
+            type: "pie",
+            data: data.value.map((d) => ({
+              value: d.value,
+              name: d.name,
+            })),
+            radius: ["20%", "70%"],
+            roseType: "area",
+          },
+        ],
+      };
+    });
+
     return {
       online,
       codespaces,
       dataNote,
+      option1,
+      option2,
       option5,
       option6,
       option7,
