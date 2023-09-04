@@ -45,6 +45,9 @@ export default {
       name: "",
       age: "",
       createMsg: "",
+      date: "",
+      amount: "",
+      remark: "",
     };
   },
   methods: {

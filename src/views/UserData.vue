@@ -61,6 +61,30 @@ export default {
     if (lastUserInfo) {
       online.loginUser(lastUserInfo);
     }
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${codespaces.csURL}api/user/tags/${online.loginUserEach[0]._id}`
+        );
+
+        const data = await response.json();
+        console.log("gettagdata", data);
+        if (data[0].myTags2) {
+          console.log("gettagdatamyTags1", data[0].myTags2);
+
+          for (let tagName of data[0].myTags2) {
+            online.customizeTag(tagName);
+          }
+        } else {
+          console.log("no tag customized");
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    };
+
+    fetchData();
     return { online, codespaces };
   },
 
