@@ -1,25 +1,29 @@
 <template>
-  <div>
-    <h1>This is a login page</h1>
+  <div class="signBox">
+    <h2>Sign In</h2>
     <form>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        placeholder="Username"
-        required
-      />
-      <input
-        type="password"
-        id="password"
-        name="passord"
-        placeholder="Password"
-        required
-      />
+      <div>
+        *<input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Username"
+          required
+        />
+      </div>
+      <div>
+        *<input
+          type="password"
+          id="password"
+          name="passord"
+          placeholder="Password"
+          required
+        />
+      </div>
       <button type="submit" @click="submitLogin">Login</button>
     </form>
+    <p>{{ loginNote }}</p>
   </div>
-  <p>{{ loginNote }}</p>
 </template>
 
 <script>

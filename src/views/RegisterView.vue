@@ -1,37 +1,47 @@
 <template>
-  <div>
-    <h1>Sign Up</h1>
+  <div class="signBox">
+    <h2>Sign Up</h2>
     <form>
-      *<input
-        type="text"
-        id="name"
-        name="name"
-        v-model="name"
-        placeholder="Username"
-        required
-      />
-      *<input
-        type="email"
-        id="email"
-        name="email"
-        v-model="email"
-        placeholder="Email"
-        required
-      />
-      *<input
-        type="password"
-        id="password"
-        name="passord"
-        v-model="password"
-        placeholder="Password"
-        required
-      />
-      <select id="usertype" name="usertype" @input="vipBox">
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-      </select>
+      <div>
+        *<input
+          type="text"
+          id="name"
+          name="name"
+          v-model="name"
+          placeholder="Username"
+          required
+        />
+      </div>
+      <div>
+        *<input
+          type="email"
+          id="email"
+          name="email"
+          v-model="email"
+          placeholder="Email"
+          required
+        />
+      </div>
+      <div>
+        *<input
+          type="password"
+          id="password"
+          name="passord"
+          v-model="password"
+          placeholder="Password"
+          required
+        />
+      </div>
 
-      <div v-show="isVip">
+      <div>
+        *
+        <select id="usertype" name="usertype" @input="vipBox">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+      <div class="checkbox" v-show="isVip">
         <input
           type="checkbox"
           id="vipuser"
@@ -39,7 +49,7 @@
           value="vipUser"
           v-model="vipOrNot"
         />
-        <label for="terms">VIP</label>
+        VIP
       </div>
       <button type="submit" @click="submitRegister">Sign Up</button>
     </form>

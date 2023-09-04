@@ -1,14 +1,17 @@
 <template>
-  <section>
-    <aside>Main page: sidebar<SideBarComp /></aside>
-    <div>
-      <header>Main page: header <HeaderComp /></header>
-      <main>
-        main-part(router-view)
-        <router-view></router-view>
-      </main>
-    </div>
-  </section>
+  <div class="mainPage">
+    <header>
+      <div class="container"><HeaderComp /></div>
+    </header>
+    <section class="mainBody">
+      <div class="container">
+        <div class="mainContent">
+          <aside>Main page: sidebar<SideBarComp /></aside>
+          <div class="userData"><router-view></router-view></div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -25,7 +28,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<!-- <style scoped>
 section {
   display: flex;
   height: 100vh;
@@ -40,4 +43,4 @@ div {
 header {
   background-color: rgb(248, 248, 248);
 }
-</style>
+</style> -->

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>header component</h4>
+    <div class="logo">Transaction Management</div>
     Welcome
     <p>{{ online.loginUserEach[0].userType }}:</p>
     <p>{{ online.loginUserEach[0].name }}</p>
