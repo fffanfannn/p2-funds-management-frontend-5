@@ -1,6 +1,12 @@
 <template>
   <div v-if="online.loginUserEach[0].isVip">
-    <h4>chart component</h4>
+    <h4>My report</h4>
+    <p>Hello: {{ online.loginUserEach[0].name }}</p>
+    <p>Total Income: {{ incomeAmountTemp }}</p>
+    <p>Total Expense: {{ expenseAmountTemp }}</p>
+    <p>My Balance: {{ balanceAmountTemp }}</p>
+    <p>My Tags: {{ tagsAmountTemp }}</p>
+
     <p>{{ dataNote }}</p>
     <echarts class="echart" :option="option6" />
     <echarts class="echart" :option="option7" />
@@ -26,6 +32,11 @@ export default {
     const codespaces = useCodeSpacesStore();
     const lastUserInfo = JSON.parse(localStorage.getItem("lastUserInfo"));
     const dataNote = ref("");
+    let incomeAmountTemp = ref(0);
+    let expenseAmountTemp = ref(0);
+    let balanceAmountTemp = ref(0);
+    let tagsAmountTemp = ref({});
+
     if (lastUserInfo) {
       online.loginUser(lastUserInfo);
     }
@@ -194,10 +205,15 @@ export default {
         (total, user) => total + user.amount,
         0
       );
+      incomeAmountTemp.value = incomeAmount;
+
       let expenseAmount = expenseArray.reduce(
         (total, user) => total + user.amount,
         0
       );
+      expenseAmountTemp.value = expenseAmount;
+      balanceAmountTemp.value = incomeAmount - expenseAmount;
+
       option5.value.series[0].data = [
         { value: incomeAmount, name: "Income" },
         { value: expenseAmount, name: "Expense" }, // You can replace this with your desired data
@@ -237,6 +253,8 @@ export default {
           name: tagName,
         });
       }
+
+      tagsAmountTemp.value = option8.value.series[0].data;
     });
 
     const data = ref([
@@ -349,6 +367,10 @@ export default {
       option6,
       option7,
       option8,
+      incomeAmountTemp,
+      expenseAmountTemp,
+      balanceAmountTemp,
+      tagsAmountTemp,
     };
   },
 };
