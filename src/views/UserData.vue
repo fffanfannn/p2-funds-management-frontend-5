@@ -63,6 +63,7 @@ export default {
     }
 
     const fetchData = async () => {
+      online.customizeTags = [];
       try {
         const response = await fetch(
           `${codespaces.csURL}api/user/tags/${online.loginUserEach[0]._id}`

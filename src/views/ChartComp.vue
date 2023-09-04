@@ -5,6 +5,7 @@
     <echarts class="echart" :option="option6" />
     <echarts class="echart" :option="option7" />
     <echarts class="echart" :option="option5" />
+    <echarts class="echart" :option="option8" />
   </div>
   <div v-if="!online.loginUserEach[0].isVip">
     <h4>chart component</h4>
@@ -30,6 +31,7 @@ export default {
     }
 
     online.users = [];
+    online.customizeTags = [];
 
     fetch(`${codespaces.csURL}api/account/user/${online.loginUserEach[0]._id}`)
       .then((response) => response.json())
@@ -40,6 +42,20 @@ export default {
           console.log(data);
           for (let user of data) {
             online.addUser(user);
+          }
+        }
+      });
+
+    fetch(`${codespaces.csURL}api/user/tags/${online.loginUserEach[0]._id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("data", data);
+        console.log("datafrom tag API", data[0].myTags2);
+        if (!data[0].myTags2) {
+          dataNote.value = "Please create new data";
+        } else {
+          for (let user of data[0].myTags2) {
+            online.customizeTag(user);
           }
         }
       });
@@ -61,6 +77,26 @@ export default {
           roseType: "area",
           data: [],
           color: ["rgb(25, 183, 207)", "rgb(245, 140, 143)"],
+        },
+      ],
+    });
+
+    const option8 = ref({
+      animationDuration: 3000,
+      title: {
+        text: "Tags Pie",
+      },
+      legend: {
+        orient: "vertical",
+        left: "left",
+      },
+
+      series: [
+        {
+          type: "pie",
+          radius: ["10%", "70%"],
+          roseType: "area",
+          data: [],
         },
       ],
     });
@@ -183,6 +219,26 @@ export default {
       });
     });
 
+    watch(online.customizeTags, () => {
+      console.log("tagname", online.customizeTags);
+      for (let tagName of online.customizeTags) {
+        console.log("tagnamein loop", tagName);
+        let tagAmount = online.users.reduce((total, user) => {
+          if (user.tag == tagName) {
+            return total + user.amount;
+          } else {
+            return total;
+          }
+        }, 0);
+
+        console.log("tagAmount", tagAmount);
+        option8.value.series[0].data.push({
+          value: tagAmount,
+          name: tagName,
+        });
+      }
+    });
+
     const data = ref([
       { value: 50, name: "Mon" },
       { value: 125, name: "Tue" },
@@ -292,6 +348,7 @@ export default {
       option5,
       option6,
       option7,
+      option8,
     };
   },
 };
