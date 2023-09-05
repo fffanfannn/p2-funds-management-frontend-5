@@ -6,7 +6,10 @@
       <p>Total Income: ${{ incomeAmountTemp }}</p>
       <p>Total Expense: ${{ expenseAmountTemp }}</p>
       <p>My Balance: ${{ balanceAmountTemp }}</p>
-      <p>My Tags: {{ tagsAmountTemp }}</p>
+      <p>My Tags:</p>
+      <div v-for="tagValue in tagsAmountTemp" :key="tagValue.name">
+        <p>{{ tagValue.name }} : {{ tagValue.value }}</p>
+      </div>
 
       <div class="allecharts">
         <div>

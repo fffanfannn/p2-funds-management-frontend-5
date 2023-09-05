@@ -34,10 +34,18 @@ const routes = [
     path: "/main/:id",
     name: "Main",
     component: Main,
+    beforeEnter: (to, from, next) => {
+      const isAuthenticated = localStorage.getItem("lastUserInfo");
+      if (isAuthenticated) {
+        next();
+      } else {
+        next("/");
+      }
+    },
     redirect: { name: "Userdata" },
     children: [
       {
-        path: "home",
+        path: "account",
         name: "Home",
         component: Home,
       },
@@ -52,7 +60,7 @@ const routes = [
         component: DetailsComp,
       },
       {
-        path: "statistics",
+        path: "report",
         name: "Statistics",
         component: ChartComp,
       },
@@ -75,11 +83,5 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.name !== "Welcome" && !localStorage.getItem("lastUserInfo"))
-    next({ name: "Welcome" });
-  else next();
 });
 export default router;
