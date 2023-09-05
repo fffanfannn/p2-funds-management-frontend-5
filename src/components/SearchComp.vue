@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h4>searchComp.vue</h4>
+  <div class="createAndSearch">
+    <h4>Search</h4>
 
     <input
       type="text"
@@ -8,6 +8,7 @@
       id="name"
       name="name"
       @input="searchBtn"
+      placeholder="Search by remark"
     />
 
     From:

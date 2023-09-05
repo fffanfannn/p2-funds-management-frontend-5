@@ -1,19 +1,26 @@
 <template>
-  <div>
-    <h5>Customize Tags</h5>
-    <button @click="addTag">+</button>
-    <button @click="confirmTag">confirm</button>
-    <div v-for="(tag, index) in tags" :key="index">
-      <input type="text" v-model="tag.name" />
-      <button @click="removeTag(index)">-</button>
-    </div>
+  <div class="accountPage">
+    <h4>Hi, {{ online.loginUserEach[0].name }}</h4>
+    <p v-if="!online.loginUserEach[0].isVip" class="noteInfo">
+      Please join us as VIP
+    </p>
+    <p>Transaction Tags Customized</p>
+    <div v-if="online.loginUserEach[0].isVip">
+      <button @click="addTag" class="tagBtn">Create Tag</button>
+      <button @click="confirmTag" class="tagBtn">confirm</button>
+      <div v-for="(tag, index) in tags" :key="index" class="tagLoop">
+        New Tag:
+        <input type="text" v-model="tag.name" />
+        <button @click="removeTag(index)">---</button>
+      </div>
 
-    <ul>
-      My Tags
-      <li v-for="(tag, index) in confirmedTags" :key="index">
-        {{ tag }}
-      </li>
-    </ul>
+      <ul>
+        My Tags:
+        <li v-for="(tag, index) in confirmedTags" :key="index">
+          {{ tag }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 

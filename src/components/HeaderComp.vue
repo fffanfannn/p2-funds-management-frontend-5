@@ -1,11 +1,19 @@
 <template>
-  <div>
-    <div class="logo">Transaction Management</div>
-    Welcome
-    <p>{{ online.loginUserEach[0].userType }}:</p>
-    <p>{{ online.loginUserEach[0].name }}</p>
-    <p>{{ online.loginUserEach[0].isVip ? "VIP" : "" }}</p>
-    <button @click="submitLogout">Log out</button>
+  <div class="mainPageHeaderContent">
+    <div class="container">
+      <div class="mainPageHeaderContent">
+        <div class="logo">Transaction Management</div>
+        <div class="userHeader">
+          <p>
+            Welcome {{ online.loginUserEach[0].userType }}:
+            {{ online.loginUserEach[0].name }}
+            {{ online.loginUserEach[0].isVip ? "VIP" : "" }}
+          </p>
+
+          <button @click="submitLogout">Log out</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

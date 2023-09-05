@@ -1,23 +1,29 @@
 <template>
-  <div v-if="online.loginUserEach[0].isVip">
-    <h4>My report</h4>
-    <p>Hello: {{ online.loginUserEach[0].name }}</p>
-    <p>Total Income: {{ incomeAmountTemp }}</p>
-    <p>Total Expense: {{ expenseAmountTemp }}</p>
-    <p>My Balance: {{ balanceAmountTemp }}</p>
-    <p>My Tags: {{ tagsAmountTemp }}</p>
+  <div class="reportPage">
+    <h4>{{ online.loginUserEach[0].name }} report</h4>
+    <p class="noteInfo">{{ dataNote }}</p>
+    <div v-if="online.loginUserEach[0].isVip">
+      <p>Total Income: ${{ incomeAmountTemp }}</p>
+      <p>Total Expense: ${{ expenseAmountTemp }}</p>
+      <p>My Balance: ${{ balanceAmountTemp }}</p>
+      <p>My Tags: {{ tagsAmountTemp }}</p>
 
-    <p>{{ dataNote }}</p>
-    <echarts class="echart" :option="option6" />
-    <echarts class="echart" :option="option7" />
-    <echarts class="echart" :option="option5" />
-    <echarts class="echart" :option="option8" />
-  </div>
-  <div v-if="!online.loginUserEach[0].isVip">
-    <h4>chart component</h4>
-    <p>Please join us as VIP users</p>
-    <echarts class="echart" :option="option1" />
-    <echarts class="echart" :option="option2" />
+      <div class="allecharts">
+        <div>
+          <echarts class="echart" :option="option6" />
+          <echarts class="echart" :option="option7" />
+        </div>
+        <div>
+          <echarts class="echart" :option="option5" />
+          <echarts class="echart" :option="option8" />
+        </div>
+      </div>
+    </div>
+    <div v-if="!online.loginUserEach[0].isVip">
+      <p class="noteInfo">Please join us as a VIP user</p>
+      <echarts class="echart" :option="option1" />
+      <echarts class="echart" :option="option2" />
+    </div>
   </div>
 </template>
 
@@ -74,18 +80,17 @@ export default {
     const option5 = ref({
       animationDuration: 3000,
       title: {
-        text: "Income/Expense Pie",
+        text: "Income/Expense Total Pie",
       },
       legend: {
         orient: "vertical",
-        left: "left",
+        left: "right",
       },
 
       series: [
         {
           type: "pie",
-          radius: ["10%", "70%"],
-          roseType: "area",
+          radius: ["50%", "70%"],
           data: [],
           color: ["rgb(25, 183, 207)", "rgb(245, 140, 143)"],
         },
@@ -95,11 +100,11 @@ export default {
     const option8 = ref({
       animationDuration: 3000,
       title: {
-        text: "Tags Pie",
+        text: "Amount by Tags",
       },
       legend: {
         orient: "vertical",
-        left: "left",
+        left: "right",
       },
 
       series: [
@@ -115,7 +120,7 @@ export default {
     const option6 = ref({
       animationDuration: 2000,
       title: {
-        text: "Income Chart",
+        text: "Amount by Date",
       },
 
       yAxis: {
@@ -142,9 +147,9 @@ export default {
     const option7 = ref({
       animationDuration: 2000,
       title: {
-        text: "Income Expense Line",
+        text: "Income/Expense Line",
       },
-      legend: {},
+      legend: { left: "right" },
       xAxis: {
         data: [],
       },
@@ -375,12 +380,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.echart {
-  width: 600px;
-  height: 400px;
-  border: 1px solid darkgrey;
-  /* padding: 1rem; */
-}
-</style>

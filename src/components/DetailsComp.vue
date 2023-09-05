@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h4>Details items</h4>
+  <div class="itemDetail">
+    <h4>Transaction Detail</h4>
     <p>Date: {{ online.detailArray[0].date }}</p>
     <p>Amount: {{ online.detailArray[0].amount }}</p>
     <p>Type: {{ online.detailArray[0].type }}</p>

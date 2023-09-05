@@ -1,23 +1,26 @@
 <template>
-  <div>
-    <h4>side bar component</h4>
-    <div>
-      <router-link
-        :to="{ name: 'Home', params: { id: online.loginUserEach[0].name } }"
-        >Home</router-link
-      >
-      <router-link
-        :to="{ name: 'Userdata', params: { id: online.loginUserEach[0].name } }"
-        >My Data</router-link
-      >
-      <router-link
-        :to="{
-          name: 'Statistics',
-          params: { id: online.loginUserEach[0].name },
-        }"
-        >My Chart</router-link
-      >
-    </div>
+  <div class="sideBar">
+    <router-link
+      :to="{ name: 'Home', params: { id: online.loginUserEach[0].name } }"
+      @click="clickSideBarBtn1"
+      :class="{ sideBarBtn1: sideBarBtn1 }"
+      >My Account</router-link
+    >
+    <router-link
+      :to="{ name: 'Userdata', params: { id: online.loginUserEach[0].name } }"
+      @click="clickSideBarBtn2"
+      :class="{ sideBarBtn2: sideBarBtn2 }"
+      >My Data</router-link
+    >
+    <router-link
+      :to="{
+        name: 'Statistics',
+        params: { id: online.loginUserEach[0].name },
+      }"
+      @click="clickSideBarBtn3"
+      :class="{ sideBarBtn3: sideBarBtn3 }"
+      >My Report</router-link
+    >
   </div>
 </template>
 
@@ -34,6 +37,30 @@ export default {
       online.loginUser(lastUserInfo);
     }
     return { online };
+  },
+  data() {
+    return {
+      sideBarBtn1: false,
+      sideBarBtn2: false,
+      sideBarBtn3: false,
+    };
+  },
+  methods: {
+    clickSideBarBtn1() {
+      this.sideBarBtn1 = true;
+      this.sideBarBtn2 = false;
+      this.sideBarBtn3 = false;
+    },
+    clickSideBarBtn2() {
+      this.sideBarBtn1 = false;
+      this.sideBarBtn2 = true;
+      this.sideBarBtn3 = false;
+    },
+    clickSideBarBtn3() {
+      this.sideBarBtn1 = false;
+      this.sideBarBtn2 = false;
+      this.sideBarBtn3 = true;
+    },
   },
 };
 </script>

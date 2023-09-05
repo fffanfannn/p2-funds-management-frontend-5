@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h4>editComp.vue</h4>
+  <div class="createAndSearch">
+    <h4>Edit transaction</h4>
     <form action="">
       <input type="date" v-model="date" name="date" />
       <input
@@ -13,8 +13,15 @@
         <option value="Income">Income</option>
         <option value="Expense">Expense</option>
       </select>
-      <select id="transactionTag" name="tag">
+      <select id="transactionTag" name="tag" :value="listData.tag">
         <option value="Default">Default</option>
+        <option
+          v-for="(tag, index) in online.customizeTags"
+          :key="index"
+          :value="tag"
+        >
+          {{ tag }}
+        </option>
       </select>
       <input
         type="text"
@@ -24,7 +31,6 @@
       />
       <button type="submit" @click="submitUpdate">Update</button>
     </form>
-    <button>close</button>
     <p>{{ createMsg }}</p>
   </div>
 </template>

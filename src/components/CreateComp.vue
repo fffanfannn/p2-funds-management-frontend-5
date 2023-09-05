@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h4>createComp.vue</h4>
+  <div class="createAndSearch">
+    <h4>Create transaction</h4>
     <form action="">
       <input type="date" v-model="date" name="date" placeholder="Date" />
       <input type="text" v-model="amount" name="amount" placeholder="Amount" />
@@ -21,7 +21,6 @@
       <input type="text" v-model="remark" name="remark" placeholder="Remark" />
       <button type="submit" @click="submitCreate">Create</button>
     </form>
-    <button>close</button>
     <p>{{ createMsg }}</p>
   </div>
 </template>

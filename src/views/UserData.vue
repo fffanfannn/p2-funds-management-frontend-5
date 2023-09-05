@@ -1,48 +1,59 @@
 <template>
-  <div>
-    <h1>This is an account list page</h1>
+  <div class="userDataList">
+    <div>
+      <div class="titleAndButton">
+        <h2>My Transaction List</h2>
+        <div>
+          <button @click="addBtn">Create</button>
+          <button @click="searchBtn">Search</button>
+        </div>
+      </div>
+      <table>
+        <tr>
+          <th>
+            Date
+            <span @click="sortByDate">↕</span>
+          </th>
+          <th>
+            Amount
+            <span @click="sortByAmount">↕</span>
+          </th>
+          <th>Type</th>
+          <th>Tag</th>
+          <th>Remark</th>
+          <th>Update</th>
+          <th>Delete</th>
+          <th>Detail</th>
+        </tr>
+        <tr
+          v-for="user in online.users"
+          :key="user.id"
+          :class="{
+            styleGreen: user.type === 'Income',
+            styleRed: user.type !== 'Income',
+          }"
+        >
+          <td>{{ user.date }}</td>
+          <td>{{ user.amount }}</td>
+          <td>{{ user.type }}</td>
+          <td>{{ user.tag }}</td>
+          <td>{{ user.remark }}</td>
+          <td><button :id="user._id" @click="editBtn(user)">update</button></td>
+          <td><button :id="user._id" @click="submitDelete">delete</button></td>
+          <td>
+            <button :id="user._id" @click="submitDetailLink">details</button>
+          </td>
+        </tr>
+      </table>
+
+      <h3>My Balance: {{ totalAmount }}</h3>
+      <p>{{ dataNote }}</p>
+
+      <CreateComp v-if="createDialog"></CreateComp>
+      <EditComp v-if="editDialog" :listData="listData"></EditComp>
+      <SearchComp v-show="searchDialog"></SearchComp>
+    </div>
   </div>
-  <button @click="addBtn">create</button>
-  <button @click="searchBtn">search</button>
-  <table>
-    <tr>
-      <th>
-        Date
-        <span @click="sortByDate">↕</span>
-      </th>
-      <th>
-        Amount
-        <span @click="sortByAmount">↕</span>
-      </th>
-      <th>Type</th>
-      <th>Tag</th>
-      <th>Remark</th>
-      <th>Update</th>
-      <th>Delete</th>
-      <th>Detail</th>
-    </tr>
-    <tr v-for="user in online.users" :key="user.id">
-      <td>{{ user.date }}</td>
-      <td>{{ user.amount }}</td>
-      <td>{{ user.type }}</td>
-      <td>{{ user.tag }}</td>
-      <td>{{ user.remark }}</td>
-      <td><button :id="user._id" @click="editBtn(user)">update</button></td>
-      <td><button :id="user._id" @click="submitDelete">delete</button></td>
-      <td>
-        <button :id="user._id" @click="submitDetailLink">details</button>
-      </td>
-    </tr>
-  </table>
-
-  <p>Income Total: {{ incomeTotalAmount }}</p>
-  <p>Expense Total: {{ expenseTotalAmount }}</p>
-  <p>My Balance: {{ totalAmount }}</p>
-  <p>{{ dataNote }}</p>
-
-  <CreateComp v-if="createDialog"></CreateComp>
-  <EditComp v-if="editDialog" :listData="listData"></EditComp>
-  <SearchComp v-show="searchDialog"></SearchComp>
 </template>
 
 <script>
