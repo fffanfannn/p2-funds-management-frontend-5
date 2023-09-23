@@ -15,7 +15,6 @@
       <div class="pageContent">
         <div class="leftdiv">
           <h1>Your Transaction Report</h1>
-
           <echarts class="echart" :option="option1" />
         </div>
         <div class="rightdiv">

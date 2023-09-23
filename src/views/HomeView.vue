@@ -4,18 +4,21 @@
     <p v-if="!online.loginUserEach[0].isVip" class="noteInfo">
       Please join us as VIP
     </p>
-    <p>Transaction Tags Customized</p>
+    <p>
+      Transaction Tags Customized: You can create or update your transaction
+      with new tags.
+    </p>
     <div v-if="online.loginUserEach[0].isVip">
       <button @click="addTag" class="tagBtn">Create Tag</button>
       <button @click="confirmTag" class="tagBtn">confirm</button>
       <div v-for="(tag, index) in tags" :key="index" class="tagLoop">
         New Tag:
         <input type="text" v-model="tag.name" />
-        <button @click="removeTag(index)">---</button>
+        <button @click="removeTag(index)">--</button>
       </div>
 
       <ul>
-        My Tags:
+        My New Tags:
         <li v-for="(tag, index) in confirmedTags" :key="index">
           {{ tag }}
         </li>

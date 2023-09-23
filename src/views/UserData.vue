@@ -1,6 +1,6 @@
 <template>
   <div class="userDataList">
-    <div>
+    <div class="userDataListHolder">
       <div class="titleAndButton">
         <h2>My Transaction List</h2>
         <div>
@@ -15,12 +15,12 @@
             <span @click="sortByDate">↕</span>
           </th>
           <th>
-            Amount
+            $
             <span @click="sortByAmount">↕</span>
           </th>
           <th>Type</th>
           <th>Tag</th>
-          <th>Remark</th>
+          <th class="notDisplayInMobile">Remark</th>
           <th>Update</th>
           <th>Delete</th>
           <th>Detail</th>
@@ -37,7 +37,7 @@
           <td>{{ user.amount }}</td>
           <td>{{ user.type }}</td>
           <td>{{ user.tag }}</td>
-          <td>{{ user.remark }}</td>
+          <td class="notDisplayInMobile">{{ user.remark }}</td>
           <td><button :id="user._id" @click="editBtn(user)">update</button></td>
           <td><button :id="user._id" @click="submitDelete">delete</button></td>
           <td>

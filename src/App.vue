@@ -21,7 +21,8 @@ body {
   background-color: rgb(175 228 236);
   .headerContent {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 2rem;
     align-items: center;
     height: 100px;
 
@@ -52,7 +53,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 1.5rem;
 
     .rightdiv {
       height: 500px;
@@ -60,15 +62,21 @@ body {
     }
 
     .leftdiv {
-      text-align: left;
-      padding: 1rem;
-      height: 300px;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 350px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px 0 rgb(165, 197, 202),
+        0 6px 20px 0 rgb(166, 202, 207);
 
       h1 {
+        text-align: center;
         font-size: 1.5rem;
         font-weight: 700;
-        margin-bottom: 1.5rem;
+        margin: 2rem auto 1.5rem auto;
       }
 
       p {
@@ -177,13 +185,14 @@ body {
 
   .mainContent {
     display: flex;
+    flex-direction: column;
     height: calc(100vh - 100px);
     aside {
-      width: 20%;
-      border-right: 1px solid rgb(153, 153, 153);
+      width: 100%;
+      border-bottom: 1px solid rgb(153, 153, 153);
     }
     .userData {
-      width: 80%;
+      width: 100%;
     }
   }
 }
@@ -192,8 +201,10 @@ body {
   background-color: rgb(175 228 236);
   .mainPageHeaderContent {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 1rem;
     height: 100px;
 
     .logo {
@@ -204,10 +215,11 @@ body {
     .userHeader {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      width: 100%;
 
       p {
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 600;
         letter-spacing: 0.1rem;
       }
@@ -218,9 +230,9 @@ body {
         text-decoration: none;
         color: #000;
         margin-left: 5rem;
-        padding: 12px 30px;
+        padding: 10px 10px;
         border-radius: 10px;
-        font-size: 1.2rem;
+        font-size: 1rem;
         letter-spacing: 0.15rem;
         &:hover {
           background-color: rgb(245, 140, 143);
@@ -232,19 +244,18 @@ body {
 }
 
 .sideBar {
-  padding: 5rem 1rem;
+  padding: 1rem 1rem;
   display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  flex-direction: row;
+  justify-content: space-between;
 
   a {
     background-color: white;
     text-decoration: none;
     color: #000;
-    padding: 15px 25px;
+    padding: 10px 15px;
     border-radius: 10px;
-    font-size: 1.2rem;
-    letter-spacing: 0.1rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
   }
@@ -259,7 +270,11 @@ body {
 .userDataList {
   display: flex;
   justify-content: center;
-  padding: 3rem 0;
+  align-items: center;
+  padding: 2rem 0;
+  .userDataListHolder {
+    width: 100%;
+  }
   .titleAndButton {
     display: flex;
     justify-content: space-between;
@@ -270,10 +285,9 @@ body {
       background-color: white;
       text-decoration: none;
       color: #000;
-      padding: 10px 20px;
+      padding: 10px 10px;
       border-radius: 10px;
-      font-size: 1.1rem;
-      letter-spacing: 0.1rem;
+      font-size: 1rem;
       font-weight: 600;
       margin-left: 1rem;
       cursor: pointer;
@@ -286,7 +300,11 @@ body {
   }
 
   table {
+    width: 100%;
     margin-bottom: 1rem;
+    .notDisplayInMobile {
+      display: none;
+    }
     .styleGreen {
       background-color: rgb(215, 250, 255);
     }
@@ -294,19 +312,21 @@ body {
       background-color: rgb(252, 239, 239);
     }
     th {
-      font-size: 1.1rem;
-      padding: 0.7rem 1rem;
+      font-size: 0.8rem;
+      padding: 0.5rem 0.5rem;
       background-color: rgb(175 228 236);
     }
     td {
-      padding: 0.3rem 1rem;
+      font-size: 0.7rem;
+      padding: 0.3rem 0.5rem;
       text-align: center;
       button {
+        font-size: 0.7rem;
         border: 1px solid rgb(0, 144, 167);
         border-radius: 5px;
         text-decoration: none;
         background-color: white;
-        padding: 0.1rem 0.5rem;
+        padding: 0.1rem 0.1rem;
       }
     }
   }
@@ -339,12 +359,13 @@ body {
     background-color: white;
     text-decoration: none;
     color: #000;
-    padding: 7px 20px;
+    padding: 5px 10px;
     border-radius: 10px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 0.1rem;
     font-weight: 600;
     margin-left: 1rem;
+    margin-top: 0.5rem;
     cursor: pointer;
     &:hover {
       border: 1px solid rgb(245, 140, 143);
@@ -368,17 +389,24 @@ body {
 }
 
 .reportPage {
-  padding: 5rem 0 0 2rem;
+  padding: 2rem 2rem 0 2rem;
   h4 {
     margin-bottom: 2rem;
-    font-size: 2rem;
+    font-size: 1.2rem;
     letter-spacing: 0.2rem;
     text-transform: capitalize;
   }
 
   p {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .customizedTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    flex-direction: row;
   }
 
   .noteInfo {
@@ -388,16 +416,17 @@ body {
   }
 
   .allecharts {
-    margin-top: 3rem;
+    margin-top: 2rem;
 
     div {
       display: flex;
+      flex-direction: column;
       gap: 0.5rem;
     }
 
     .echart {
-      width: 50%;
-      height: 320px;
+      width: 100%;
+      height: 260px;
       border: 1px solid rgb(211, 211, 211);
       margin-bottom: 0.5rem;
     }
@@ -405,24 +434,25 @@ body {
 
   .echart {
     width: 100%;
-    height: 400px;
+    height: 350px;
     border: 1px solid rgb(211, 211, 211);
     margin-bottom: 0.5rem;
   }
 }
 
 .accountPage {
-  padding: 5rem 0 0 5rem;
+  padding: 2rem 0 0 2rem;
+  border: 1px solid red;
   h4 {
     margin-bottom: 2rem;
-    font-size: 2rem;
+    font-size: 1.2rem;
     letter-spacing: 0.2rem;
     text-transform: capitalize;
   }
 
   p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .noteInfo {
@@ -438,7 +468,7 @@ body {
     color: #000;
     padding: 7px 20px;
     border-radius: 10px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 0.1rem;
     font-weight: 600;
     margin-right: 1rem;
@@ -452,7 +482,7 @@ body {
   }
 
   .tagLoop {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     input {
       height: 2rem;
       padding-left: 1rem;
@@ -467,9 +497,49 @@ body {
   ul {
     font-size: 1.5rem;
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     li {
       list-style: none;
       margin-top: 1rem;
+      padding: 7px 20px;
+      border: 1px solid rgb(125, 139, 141);
+      border-radius: 10px;
+    }
+  }
+}
+
+.adminPage {
+  padding: 0 2rem;
+  table {
+    margin: 3rem auto 1rem auto;
+    .notDisplayInMobile {
+      display: none;
+    }
+    .styleGreen {
+      background-color: rgb(215, 250, 255);
+    }
+    .styleRed {
+      background-color: rgb(252, 239, 239);
+    }
+    th {
+      font-size: 1rem;
+      padding: 0.7rem 0.5rem;
+      background-color: rgb(175 228 236);
+    }
+    td {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.5rem;
+      text-align: center;
+      button {
+        font-size: 1rem;
+        border: 1px solid rgb(0, 144, 167);
+        border-radius: 5px;
+        text-decoration: none;
+        background-color: white;
+        padding: 0.1rem 0.5rem;
+      }
     }
   }
 }
@@ -479,6 +549,7 @@ body {
     background-color: rgb(175 228 236);
     .headerContent {
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
       align-items: center;
       height: 100px;
@@ -522,8 +593,8 @@ body {
         padding: 1rem;
         display: flex;
         flex-direction: column;
-        align-items: start;
         justify-content: center;
+        align-items: center;
         height: 500px;
         width: 50%;
         border-radius: 10px;
@@ -643,6 +714,7 @@ body {
 
     .mainContent {
       display: flex;
+      flex-direction: row;
       height: calc(100vh - 100px);
       aside {
         width: 20%;
@@ -658,6 +730,7 @@ body {
     background-color: rgb(175 228 236);
     .mainPageHeaderContent {
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
       align-items: center;
       height: 100px;
@@ -665,12 +738,14 @@ body {
       .logo {
         font-size: 1.3rem;
         letter-spacing: 0.1rem;
+        width: 30%;
       }
 
       .userHeader {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: end;
+        width: 70%;
 
         p {
           font-size: 1.2rem;
@@ -701,6 +776,7 @@ body {
     padding: 5rem 1rem;
     display: flex;
     flex-direction: column;
+    justify-content: none;
     gap: 3rem;
 
     a {
@@ -726,6 +802,10 @@ body {
     display: flex;
     justify-content: center;
     padding: 3rem 0;
+    .userDataListHolder {
+      margin-left: 2rem;
+      width: 100%;
+    }
     .titleAndButton {
       display: flex;
       justify-content: space-between;
@@ -759,15 +839,20 @@ body {
       .styleRed {
         background-color: rgb(252, 239, 239);
       }
+      .notDisplayInMobile {
+        display: table-cell;
+      }
       th {
         font-size: 1.1rem;
         padding: 0.7rem 1rem;
         background-color: rgb(175 228 236);
       }
       td {
+        font-size: 1rem;
         padding: 0.3rem 1rem;
         text-align: center;
         button {
+          font-size: 1rem;
           border: 1px solid rgb(0, 144, 167);
           border-radius: 5px;
           text-decoration: none;
@@ -858,6 +943,7 @@ body {
 
       div {
         display: flex;
+        flex-direction: row;
         gap: 0.5rem;
       }
 
@@ -936,6 +1022,39 @@ body {
       li {
         list-style: none;
         margin-top: 1rem;
+      }
+    }
+  }
+
+  .adminPage {
+    table {
+      margin: 3rem auto 1rem auto;
+      .styleGreen {
+        background-color: rgb(215, 250, 255);
+      }
+      .styleRed {
+        background-color: rgb(252, 239, 239);
+      }
+      .notDisplayInMobile {
+        display: table-cell;
+      }
+      th {
+        font-size: 1.1rem;
+        padding: 0.7rem 1rem;
+        background-color: rgb(175 228 236);
+      }
+      td {
+        font-size: 1rem;
+        padding: 0.3rem 1rem;
+        text-align: center;
+        button {
+          font-size: 1rem;
+          border: 1px solid rgb(0, 144, 167);
+          border-radius: 5px;
+          text-decoration: none;
+          background-color: white;
+          padding: 0.1rem 0.5rem;
+        }
       }
     }
   }

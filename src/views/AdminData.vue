@@ -1,16 +1,23 @@
 <template>
   <header><HeaderComp /></header>
-  <section>
+  <section class="adminPage">
     <table>
       <tr>
-        <th>User ID</th>
+        <th class="notDisplayInMobile">User ID</th>
         <th>Username</th>
         <th>Email</th>
         <th>Type</th>
         <th>VIP</th>
       </tr>
-      <tr v-for="user in online.allUsersList" :key="user._id">
-        <td>{{ user._id }}</td>
+      <tr
+        v-for="user in online.allUsersList"
+        :key="user._id"
+        :class="{
+          styleGreen: user.isVip,
+          styleRed: !user.isVip,
+        }"
+      >
+        <td class="notDisplayInMobile">{{ user._id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.userType }}</td>
