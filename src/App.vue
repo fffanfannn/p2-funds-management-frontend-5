@@ -526,11 +526,15 @@ body {
         justify-content: center;
         height: 500px;
         width: 50%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgb(165, 197, 202),
+          0 6px 20px 0 rgb(166, 202, 207);
 
         h1 {
+          text-align: center;
           font-size: 2rem;
           font-weight: 700;
-          margin-bottom: 1.5rem;
+          margin: 2rem auto 1.5rem auto;
         }
 
         p {
@@ -556,7 +560,7 @@ body {
   }
 
   .signBox {
-    margin-top: 5rem;
+    // margin-top: 5rem;
     padding: 3rem;
     border-radius: 10px;
     background-color: rgb(194, 234, 240);
