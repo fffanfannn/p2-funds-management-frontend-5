@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       sideBarBtn1: false,
-      sideBarBtn2: false,
+      sideBarBtn2: true,
       sideBarBtn3: false,
     };
   },

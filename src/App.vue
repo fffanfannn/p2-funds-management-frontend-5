@@ -442,7 +442,6 @@ body {
 
 .accountPage {
   padding: 2rem 0 0 2rem;
-  border: 1px solid red;
   h4 {
     margin-bottom: 2rem;
     font-size: 1.2rem;

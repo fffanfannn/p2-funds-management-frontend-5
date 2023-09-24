@@ -53,7 +53,15 @@
       </div>
       <button type="submit" @click="submitRegister">Sign Up</button>
     </form>
-    <p>{{ registerNote }}</p>
+    <p v-if="registerNote">{{ registerNote }}</p>
+    <transition name="registerTransition" appear>
+      <div class="transition" v-show="isTransition">
+        <div class="transitionHoler">
+          <img src="../assets/work-in-progress.png" alt="work-in-progress" />
+          <h3>{{ registerNote }}</h3>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -69,6 +77,7 @@ export default {
       email: "",
       password: "",
       vipOrNot: false,
+      isTransition: false,
     };
   },
   methods: {
@@ -84,6 +93,10 @@ export default {
       const form = document.querySelector("form");
       form.addEventListener("submit", (e) => {
         e.preventDefault();
+        this.isTransition = true;
+        setTimeout(() => {
+          this.isTransition = false;
+        }, 3000);
         let userType = document.querySelector("#usertype").value;
         const formData = {
           name: this.name,
@@ -104,10 +117,10 @@ export default {
           .then((res) => {
             console.log(res);
             if (res.status == 200) {
-              this.registerNote = "Register success";
+              this.registerNote = "Register success, please login";
               setTimeout(() => {
                 this.$router.push("/login");
-              }, 1500);
+              }, 3000);
             } else {
               this.registerNote = "Username or email already exists";
             }
@@ -121,3 +134,58 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.signBox {
+  position: relative;
+}
+.transition {
+  background-color: white;
+  border-radius: 10px;
+  transition: 1s linear;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.transitionHoler {
+  margin: auto;
+  max-width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  width: 70%;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  text-align: center;
+  color: rgb(245, 140, 143);
+}
+
+.registerTransition-enter-active {
+  animation: atguigu 1s ease;
+}
+
+.registerTransition-leave-active {
+  animation: atguigu 1s ease-in reverse;
+}
+
+@keyframes atguigu {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+</style>
