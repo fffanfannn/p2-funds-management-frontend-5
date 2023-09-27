@@ -10,7 +10,16 @@
       </div>
     </div>
   </section>
-  <section class="welcomePage">
+  <section
+    class="welcomePage"
+    style="
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.116),
+          rgba(0, 0, 0, 0.075)
+        ),
+        url('/bg-3.jpg');
+    "
+  >
     <div class="container">
       <div class="pageContent">
         <div class="leftdiv">

@@ -48,6 +48,10 @@ body {
 }
 
 .welcomePage {
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.644);
+  height: calc(100vh - 100px);
   padding: 50px 0;
   .pageContent {
     display: flex;
@@ -62,6 +66,7 @@ body {
     }
 
     .leftdiv {
+      background-color: white;
       width: 100%;
       display: flex;
       flex-direction: column;
