@@ -81,8 +81,8 @@ export default {
     };
   },
   methods: {
-    vipBox() {
-      const usertype = document.querySelector("#usertype").value;
+    vipBox(event) {
+      const usertype = event.target.value;
       if (usertype == "admin") {
         this.isVip = false;
       } else {
@@ -134,58 +134,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.signBox {
-  position: relative;
-}
-.transition {
-  background-color: white;
-  border-radius: 10px;
-  transition: 1s linear;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.transitionHoler {
-  margin: auto;
-  max-width: 80%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-img {
-  width: 70%;
-  height: auto;
-  margin-bottom: 2rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-  text-align: center;
-  color: rgb(245, 140, 143);
-}
-
-.registerTransition-enter-active {
-  animation: atguigu 1s ease;
-}
-
-.registerTransition-leave-active {
-  animation: atguigu 1s ease-in reverse;
-}
-
-@keyframes atguigu {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-</style>

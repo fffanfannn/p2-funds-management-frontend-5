@@ -106,6 +106,7 @@ body {
   padding: 2rem 3rem;
   border-radius: 10px;
   background-color: rgb(194, 234, 240);
+  position: relative;
   h2 {
     margin-bottom: 1rem;
     letter-spacing: 0.2rem;
@@ -172,6 +173,55 @@ body {
       &:hover {
         background-color: rgb(245, 140, 143);
         color: white;
+      }
+    }
+  }
+
+  .registerTransition-enter-active {
+    animation: atguigu 1s ease;
+  }
+
+  .registerTransition-leave-active {
+    animation: atguigu 1s ease-in reverse;
+  }
+
+  @keyframes atguigu {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .transition {
+    background-color: white;
+    border-radius: 10px;
+    transition: 1s linear;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    .transitionHoler {
+      margin: auto;
+      max-width: 80%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 70%;
+        height: auto;
+        margin-bottom: 2rem;
+      }
+
+      h3 {
+        font-size: 2rem;
+        text-align: center;
+        color: rgb(245, 140, 143);
       }
     }
   }

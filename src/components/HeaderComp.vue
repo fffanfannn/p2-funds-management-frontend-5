@@ -19,21 +19,34 @@
 
 <script>
 import { useOnlineStore } from "@/store/online";
+import { useCodeSpacesStore } from "@/store/codespaceURL";
 
 export default {
   name: "HeaderComp",
   setup() {
     const online = useOnlineStore();
+    const codespaces = useCodeSpacesStore();
     // Retrieve data from Local Storage on component initialization
     const lastUserInfo = JSON.parse(localStorage.getItem("lastUserInfo"));
     if (lastUserInfo) {
       online.loginUser(lastUserInfo);
     }
-    return { online };
+    return { online, codespaces };
   },
 
   methods: {
-    submitLogout() {
+    async submitLogout() {
+      const codespaces = useCodeSpacesStore();
+      await fetch(`${codespaces.csURL}api/user/logout`, {
+        method: "get",
+      })
+        .then((res) => {
+          console.log(res);
+          // return res.text();
+        })
+        .then((data) => {
+          console.log(data);
+        });
       localStorage.removeItem("lastUserInfo");
       this.$router.push({ name: "Login" });
     },
