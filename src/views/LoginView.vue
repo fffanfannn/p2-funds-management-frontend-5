@@ -96,14 +96,14 @@ export default {
                   this.$router.push({
                     name: "Admindata",
                   });
-                }, 3000);
+                }, 1500);
               } else if (data.userType == "user") {
                 setTimeout(() => {
                   this.$router.push({
                     name: "Main",
                     params: { id: data.name },
                   });
-                }, 3000);
+                }, 1500);
               }
             }
           });

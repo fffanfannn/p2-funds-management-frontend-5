@@ -4,8 +4,8 @@
       <div class="titleAndButton">
         <h2>My Transaction List</h2>
         <div>
-          <button @click="addBtn">Create</button>
-          <button @click="searchBtn">Search</button>
+          <button @click="addBtn" data-testid="create-button">Create</button>
+          <button @click="searchBtn" data-testid="search-button">Search</button>
         </div>
       </div>
       <table>
@@ -38,7 +38,15 @@
           <td>{{ user.type }}</td>
           <td>{{ user.tag }}</td>
           <td class="notDisplayInMobile">{{ user.remark }}</td>
-          <td><button :id="user._id" @click="editBtn(user)">update</button></td>
+          <td>
+            <button
+              :id="user._id"
+              @click="editBtn(user)"
+              data-testid="update-button"
+            >
+              update
+            </button>
+          </td>
           <td><button :id="user._id" @click="submitDelete">delete</button></td>
           <td>
             <button :id="user._id" @click="submitDetailLink">details</button>
