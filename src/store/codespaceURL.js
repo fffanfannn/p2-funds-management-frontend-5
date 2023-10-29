@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 
 export const useCodeSpacesStore = defineStore("codespaces", {
   state: () => ({
-    csURL:
-      "https://glowing-space-happiness-x65647x7qw4c6j4g-3000.app.github.dev/",
+    csURL: "http://52.90.39.12:3003/",
   }),
 });
